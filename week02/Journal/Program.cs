@@ -6,9 +6,7 @@ using System;
 //      file, bad path, or permission problem is caught and reported to the
 //      user instead of crashing the whole program (see Journal.SaveToFile
 //      and Journal.LoadFromFile).
-//   3. Skips malformed lines when loading a journal file instead of throwing
-//      an unhandled exception, so a corrupted or hand-edited save file
-//      doesn't take down the program.
+
  
 class Program
 {

@@ -12,7 +12,7 @@ class Journal
     public Journal()
     {
         _Questionnaire.Add("Who was the most interesting person I interacted with today?");
-        _Questionnaire.Add("What was the best part of my day?");
+        _Questionnaire.Add("What was the best part of my day tell me?");
         _Questionnaire.Add("How did I see the hand of the Lord in my life today?");
         _Questionnaire.Add("What was the strongest emotion I felt today?");
         _Questionnaire.Add("If I had one thing I could do over today, what would it be?");
@@ -22,8 +22,7 @@ class Journal
     {
         int index = _randomGenerator.Next(_Questionnaire.Count);
  
-        // Extra polish: if there is more than one question, avoid asking
-        // the exact same one twice in a row.
+        
         while (_Questionnaire.Count > 1 && index == _lastPromptIndex)
         {
             index = _randomGenerator.Next(_Questionnaire.Count);
@@ -50,7 +49,6 @@ class Journal
  
     public void SaveToFile(string filename)
     {
-        // Extra robustness: don't let a bad path/permission crash the whole program.
         try
         {
             using (StreamWriter outputFile = new StreamWriter(filename))
@@ -70,8 +68,6 @@ class Journal
  
     public void LoadFromFile(string filename)
     {
-        // Extra robustness: a missing file or a malformed line shouldn't crash
-        // the program - just report the problem and keep the menu running.
         try
         {
             string[] lines = File.ReadAllLines(filename);
@@ -82,7 +78,7 @@ class Journal
                 string[] parts = line.Split("~|~");
                 if (parts.Length < 3)
                 {
-                    continue; // skip malformed lines instead of crashing
+                    continue;
                 }
  
                 string date = parts[0];
@@ -97,11 +93,11 @@ class Journal
         }
         catch (FileNotFoundException)
         {
-            Console.WriteLine($"Could not find the file '{filename}'.");
+        Console.WriteLine($"Could not find the file '{filename}'.");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Could not load the journal: {ex.Message}");
+        Console.WriteLine($"Could not load the journal: {ex.Message}");
         }
     }
 }
