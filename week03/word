@@ -1,0 +1,36 @@
+
+public class Word
+{
+    private string _text;
+    private bool _oculto;
+
+    public Word(string texto)
+    {
+        _text = texto;
+        _oculto = false;
+    }
+
+    public void Hide()
+    {
+        _oculto = true;
+    }
+
+    public string GetDisplayText()
+    {
+        if (_oculto == true)
+        {
+            string guiones = "";
+
+            for (int i = 0; i < _text.Length; i++)
+            {
+                guiones += "_";
+            }
+
+            return guiones;
+        }
+        else
+        {
+            return _text;
+        }
+    }
+}

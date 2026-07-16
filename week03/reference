@@ -1,0 +1,37 @@
+using System;
+
+public class Reference
+{
+    private string _book;
+    private int _chapster;
+    private int _versestart;
+    private int _versende;
+
+    public Reference(string book, int chapter, int verseStart)
+    {
+        _book = book;
+        _chapster = chapter;
+        _versestart = verseStart;
+        _versende = verseStart;
+    }
+
+    public Reference(string book, int chapter, int verseStart, int verseEnd)
+    {
+        _book = book;
+        _chapster = chapter;
+        _versestart = verseStart;
+        _versende = verseEnd;
+    }
+
+    public string GetDisplayText()
+    {
+        if (_versestart == _versende)
+        {
+            return _book + " " + _chapster + ":" + _versestart;
+        }
+        else
+        {
+            return _book + " " + _chapster + ":" + _versestart + "-" + _versende;
+        }
+    }
+}
